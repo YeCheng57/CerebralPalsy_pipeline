@@ -5,7 +5,6 @@ genome=config["reference"]["genome"]
 spliceai=config['software']['spliceai']
 
 SAMPLES, =glob_wildcards(ind+"/{sample}.vcf")
-SAMPLES.remove('S2000089333.freq01.DP5GQ60')
 rule spliceai_done:
 	input:
 		expand(outd+"/{sample}"+config["spliceai_suffix"],sample=SAMPLES)
