@@ -5,9 +5,11 @@ Files Descriptions:
 > > - CANOES.R: The CANOES algrithm for CNV detection.
 > > - CANOES_ReadsCounting.sh: Reads Counts generating using bedtools.
 > > - callCNVS.R: calling CNVs using RD methods.
+> > - ExomeDepth.R: calling CNVs using ExomeDepth (https://github.com/vplagnol/ExomeDepth)
 > ```
 > nohup bash CANOES_ReadsCount.sh &
 > nohup Rscript callCNVs.R &
+> nohup Rscript ExomeDepth.R &
 > ```
 > For WGS CNV detection, we used cnvnator https://github.com/abyzovlab/CNVnator
 > ```
