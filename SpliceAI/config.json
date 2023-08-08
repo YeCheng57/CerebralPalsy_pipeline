@@ -1,0 +1,12 @@
+{
+	"data":"/home/u19111510023/CP/WES/spliceAI",
+	"output":"/home/u19111510023/CP/WES/spliceAI",
+	"vcf_suffix":".vcf",
+	"spliceai_suffix":".spliceai",
+	"reference":{
+		"genome":"/home/u19111510023/reference/hg38/genome.fa"
+	},
+	"software":{
+		"spliceai":"/home/u19111510023/.local/bin/spliceai"
+	}
+}

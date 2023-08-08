@@ -1,0 +1,19 @@
+configfile: "config.json"
+ind=config['input']
+outd=config['output']
+
+SAMPLE,=glob_wildcards(ind+'/{sample}'+config['vcf_suffix'])
+rule acmg_done:
+	input:
+		expand(outd+"/{sample}.hg38_multianno.intervar", sample=SAMPLE)
+rule annotation:
+	input:
+		ind+"/{sample}"+config['vcf_suffix']
+	output:
+		txt=outd+"/{sample}.hg38_multianno.intervar"
+	threads:
+		config["intervarThreads"]
+	shell:
+		"""
+		python ~/software/InterVar/Intervar.py --table_annovar=/home/u19111510023/software/annovar/table_annovar.pl --convert2annovar=/home/u19111510023/software/annovar/convert2annovar.pl --annotate_variation=/home/u19111510023/software/annovar/annotate_variation.pl -d /home/u19111510023/software/annovar/b37 -b hg19 -i {input} --input_type=VCF -o {outd}/{wildcards.sample} -t ~/software/InterVar/intervardb/
+		"""

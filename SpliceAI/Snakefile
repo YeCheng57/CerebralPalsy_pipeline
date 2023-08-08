@@ -1,0 +1,18 @@
+configfile:"config.json"
+ind=config['data']
+outd=config['output']
+genome=config["reference"]["genome"]
+spliceai=config['software']['spliceai']
+
+SAMPLES, =glob_wildcards(ind+"/{sample}.vcf")
+SAMPLES.remove('S2000089333.freq01.DP5GQ60')
+rule spliceai_done:
+	input:
+		expand(outd+"/{sample}"+config["spliceai_suffix"],sample=SAMPLES)
+rule spliceai_annotation:
+	input:
+		vcf=ind+"/{sample}.vcf"
+	output:
+		outd+"/{sample}"+config["spliceai_suffix"]
+	shell:
+		"""{spliceai} -I {input.vcf} -O {output} -R {genome} -A grch38"""

@@ -1,0 +1,11 @@
+{
+	"input":"/home/u19111510023/CP/WES/bam",
+	"output":"/home/u19111510023/CP/WES/Mitochondrial",
+	"vcf_suffix":".g.vcf.gz",
+	"software":{
+		"annovar":"/home/u19111510023/software/ANNOVAR/table_annovar.pl"
+	},
+	"db":"/home/u19111510023/software/ANNOVAR/hg38",
+	"version":"hg38"
+}
+

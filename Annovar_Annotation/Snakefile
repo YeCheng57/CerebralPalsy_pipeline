@@ -1,0 +1,39 @@
+configfile: "config.json"
+ind=config['input']
+outd=config['output']
+
+SAMPLE,=glob_wildcards(ind+'/{sample}.sorted.markdup.BQSR.bam')
+rule annovar_done:
+	input:
+		expand(outd+"/{sample}.hg38_multianno.txt", sample=SAMPLE)
+	output:
+		touch(outd+"/annotation.done")
+rule Genotype:
+	input:
+		ind+"/{sample}.sorted.markdup.BQSR.bam"
+	output:
+		vcf=outd+"/{sample}.vcf.gz"
+	shell:
+		"""
+		gatk HaplotypeCaller -I {input} -O {output} -R /home/u19111510023/reference/hg38/genome.fa -L chrM
+		"""
+rule annotation:
+	input:
+		rules.Genotype.output
+	output:
+		txt=outd+"/{sample}.hg38_multianno.txt",
+	log:
+		outd+"/logs/{sample}.log"
+	benchmark:
+		outd+"/benchmarks/{sample}.txt"
+	params:
+		version=config["version"],
+		sw=config['software']['annovar'],
+		db=config['db'],
+		outprefix=outd+"/{sample}"
+	shell:
+		"""
+		{params.sw} {input} {params.db} -buildver {params.version} -out {params.outprefix} -remove -protocol refGene,ensGene,phastConsElements100way,cytoBand,genomicSuperDups,wgRna,gwasCatalog,dgvMerged,avsnp150,ALL.sites.2015_08,EAS.sites.2015_08,AFR.sites.2015_08,AMR.sites.2015_08,EUR.sites.2015_08,SAS.sites.2015_08,gnomad211_exome,dbscsnv11,dbnsfp42a,clinvar_20221231,gene4denovo201907,intervar_20180118 -operation g,g,r,r,r,r,r,r,f,f,f,f,f,f,f,f,f,f,f,f,f -nastring . -vcfinput -thread 8
+		"""
+
+	

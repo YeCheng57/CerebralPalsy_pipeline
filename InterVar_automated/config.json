@@ -1,0 +1,6 @@
+{
+	"input":"/home/u19111510023/vcf",
+	"output":"/home/u19111510023/InterVar",
+	"vcf_suffix":"-baixibao.vcf.gz",
+	"intervarThreads":10
+}
