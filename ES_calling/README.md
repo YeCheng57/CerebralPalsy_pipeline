@@ -10,10 +10,10 @@ Files Descriptions:
 > nohup Rscript callCNVs.R &
 > ```
 > SNP/Indels detection
-> > config.json: configure file indicating IO, softwares and references used for variations calling
-> > trimfastq.conf: fastq trimming
-> > precalling.conf: reads alignment, bam file sort and mark duplicates.
-> > gatk_single.conf: variants calling using gatk HaplotypeCaller, remove --ERC GVCF if only vcf file output is needed.
+> > - config.json: configure file indicating IO, softwares and references used for variations calling
+> > - trimfastq.conf: fastq trimming
+> > - precalling.conf: reads alignment, bam file sort and mark duplicates.
+> > - gatk_single.conf: variants calling using gatk HaplotypeCaller, remove --ERC GVCF if only vcf file output is needed.
 > We used snakemake to control the job flow due to the numberous individuals sequenced
 > ```
 > snakemake -np -s gatk_single.conf
