@@ -1,7 +1,7 @@
 # Calling SNP/Indels and CNVs from WES. 
 #### For WGS, just remove the -L parameter from the GATK pipelines.
 Files Descriptions:
-> CNV detection, please see https://github.com/ShenLab/CANOES for more details.
+> CNV detection, please see https://github.com/ShenLab/CANOES and https://github.com/vplagnol/ExomeDepth for more details.
 > > - CANOES.R: The CANOES algrithm for CNV detection.
 > > - CANOES_ReadsCounting.sh: Reads Counts generating using bedtools.
 > > - callCNVS.R: calling CNVs using RD methods.
